@@ -142,3 +142,18 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+
+    - name: Docker file - copy Docker file
+      run: |
+        cp ${{ env.FIRMWARE }}/* n1        
+
+    - name: Image - build&push docker image
+      run: |
+        cd n1
+        sudo bash build.sh $(date +%m%d)
+        
+    - name: Upload - push to artifact file
+      uses: actions/upload-artifact@master
+      with:
+        name: docker-n1
+        path: n1/opt/imgs
