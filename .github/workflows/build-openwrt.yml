@@ -133,3 +133,8 @@ jobs:
       with:
         name: docker-n1
         path: n1/opt/imgs
+
+    - name: Cleanup
+      if: always()
+      run: rm -rf build
+
