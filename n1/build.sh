@@ -5,6 +5,7 @@ if [ ! -z "$1" ];then
 	TAG=$1
 fi
 
+
 TMPDIR=openwrt_rootfs
 OUTDIR=opt/imgs
 IMG_NAME=openwrt-aarch64
